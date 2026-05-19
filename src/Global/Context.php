@@ -165,7 +165,8 @@ final class XWP_Context {
     public static function rest(): bool {
         $prefix = \trailingslashit( \rest_get_url_prefix() );
 
-        return false !== \strpos( \xwp_fetch_server_var( 'REQUEST_URI', '' ), $prefix );
+        return false !== \strpos( \xwp_fetch_server_var( 'REQUEST_URI', '' ), $prefix )
+            || ! empty( $_GET['rest_route'] ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended
     }
 
     /**
